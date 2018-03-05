@@ -21,5 +21,18 @@ public class MyInstanceConfig extends MyDataCenterInstanceConfig{
         }
     }
 
-
+    /**
+     * 实例id是显示在服务中心列表页的status字段，就是boot项目中的
+     * `eureka.instance.instance-id=${spring.cloud.client.ipAddress}:${server.port}`这个配置，
+     * 因为boot项目里可以获取ip地址来显示。所以这里采用重写方法的方式来实现
+     * @return
+     */
+    @Override
+    public String getInstanceId() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress()+":"+getNonSecurePort();
+        } catch (UnknownHostException e) {
+            return "Unknown";
+        }
+    }
 }
