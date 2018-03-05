@@ -45,6 +45,7 @@
 		<module>customer</module>
 		<module>product</module>
 		<module>order</module>
-	</modules>
+        <module>mvcservice</module>
+    </modules>
 
 </project>
