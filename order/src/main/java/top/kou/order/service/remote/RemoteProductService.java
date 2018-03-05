@@ -14,4 +14,7 @@ public interface RemoteProductService {
 
     @RequestMapping("/product/lookup")
     Response<Set<Product>> lookup(@RequestParam("id") Integer id, @RequestParam("name") String name);
+
+    @RequestMapping("/getNeoHello")
+    String hello();
 }
