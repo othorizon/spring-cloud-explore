@@ -24,16 +24,40 @@ services:
         jarName: admin-server
     ports:
       - 8200:8200
-  config-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        jarName: config-server
-    ports:
-      - 8010:8010
+#  config-server:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      args:
+#        jarName: config-server
+#    ports:
+#      - 8010:8010
 
-# service
+# apollo
+  apollo-quick-start:
+    build:
+      context: ./deploy/apollo
+    container_name: apollo-quick-start
+    depends_on:
+      - apollo-db
+    ports:
+      - 8680:8080
+      - 8690:8090
+      - 8670:8070
+    links:
+      - apollo-db
+
+  apollo-db:
+    build:
+      context: ./deploy/apollo/sql
+    container_name: apollo-db
+    environment:
+      TZ: Asia/Shanghai
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - 13306:3306
+
+  # service
   demo-product:
     build:
       context: .
