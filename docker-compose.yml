@@ -1,0 +1,52 @@
+version: "3"
+services:
+# cloud
+  rabbitmq-server:
+    image: rabbitmq:management
+    ports: 
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
+  eureka-server:
+    build:  
+      context: .
+      dockerfile: Dockerfile
+      args: 
+        jarName: eureka-server
+    ports: 
+      - 8000:8000
+  admin-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        jarName: admin-server
+    ports:
+      - 8200:8200
+  config-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        jarName: config-server
+    ports:
+      - 8010:8010
+
+# service
+  demo-product:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        jarName: product
+    ports:
+      - 8120:8120
+  demo-order:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        jarName: order
+    ports:
+      - 8130:8130
