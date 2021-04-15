@@ -31,8 +31,13 @@ https://blog.csdn.net/hu_zhiting/article/details/89707448
 restTemple请求也可以使用serviceName:  
 http://localhost:8130/restTemplateRequest?url=http://PRODUCT-SERVICE
 
-通过apollo读取配置:  
+通过apollo读取配置:   
 http://localhost:8130/apolloValue
+
+eureka http://localhost:8000/
+spring-boot-admin http://localhost:8200/   admin/admin  
+apollo http://localhost:8670/  apollo/admin  
+demo-order http://localhost:8130/
 
 ### apollo的docker部署
 
