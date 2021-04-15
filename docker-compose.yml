@@ -40,6 +40,7 @@ services:
     container_name: apollo-quick-start
     depends_on:
       - apollo-db
+      - eureka-server
     ports:
       - 8680:8080
       - 8690:8090
@@ -74,3 +75,18 @@ services:
         jarName: order
     ports:
       - 8130:8130
+  apollo-demo:
+    environment:
+      - APOLLO_META=http://apollo-quick-start:8080
+      # IDC 不起作用
+      # - IDC=SampleApp
+      - app.id=SampleApp
+      - ENV=DEV
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        jarName: apollo-demo
+    # 不指定宿主机映射端口是为了方便scale
+    ports:
+      - 8150

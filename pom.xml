@@ -59,6 +59,19 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<repositories>
+		<repository>
+			<id>aliyun</id>
+			<url>https://maven.aliyun.com/repository/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<modules>
 		<module>config-server</module>
 		<module>eureka-server</module>
@@ -69,6 +82,7 @@
 		<module>product</module>
 		<module>order</module>
         <module>mvcservice</module>
-    </modules>
+		<module>apollo-demo</module>
+	</modules>
 
 </project>

@@ -1,0 +1,7 @@
+# apollo seeAlso app.properties
+
+apollo:
+  cluster: cluster-1
+  bootstrap:
+    enabled: true
+    namespaces: Apollo-Demo

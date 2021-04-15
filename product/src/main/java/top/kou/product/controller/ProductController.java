@@ -3,6 +3,7 @@ package top.kou.product.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +23,13 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private Environment environment;
 
     @GetMapping("")
-    public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("this is product service");
+    public ResponseEntity<String> hello(String key) {
+        return ResponseEntity.ok("this is " + environment.getProperty("spring.application.name") + "," + environment.getProperty("eureka.instance.instance-id")
+                + ";   \n  " + (key != null ? (key + ":" + environment.getProperty(key)) : ""));
     }
 
     @RequestMapping("/product/create")

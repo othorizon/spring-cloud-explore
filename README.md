@@ -20,7 +20,7 @@ https://blog.csdn.net/hu_zhiting/article/details/89707448
 
 ## docker 部署
 
-`docker-compose -f docker-compose.yml up -d --build`
+`docker-compose -f docker-compose.yml up -d --build --scale demo-order=2`
 `docker-compose -f docker-compose.yml up -d --build [serviceName]`
 
 销毁清理
@@ -33,6 +33,13 @@ http://localhost:8130/restTemplateRequest?url=http://PRODUCT-SERVICE
 
 通过apollo读取配置:   
 http://localhost:8130/apolloValue
+
+负载均衡演示
+http://localhost:8130/restTemplateRequest?url=http://Order-Service?key=apolloValue
+http://localhost:8130/restTemplateRequest?url=http://Order-Service/
+http://localhost:8130/restTemplateRequest?url=http://Order-Service/apolloValue
+
+
 
 eureka http://localhost:8000/
 spring-boot-admin http://localhost:8200/   admin/admin  
