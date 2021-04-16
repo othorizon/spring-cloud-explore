@@ -83,6 +83,7 @@
 		<module>order</module>
         <module>mvcservice</module>
 		<module>apollo-demo</module>
+		<module>simple-demo</module>
 	</modules>
 
 </project>

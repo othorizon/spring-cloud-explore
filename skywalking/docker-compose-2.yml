@@ -1,0 +1,56 @@
+version: '3.5'
+services:
+  sk-oap:
+    image: apache/skywalking-oap-server:8.5.0-es6
+    container_name: oap
+    ports:
+      - 11800:11800
+      - 12800:12800
+  sk-ui:
+    image: apache/skywalking-ui
+    container_name: ui
+    depends_on:
+      - sk-oap
+    ports:
+      - 18080:8080
+    environment:
+      SW_OAP_ADDRESS: sk-oap:12800
+
+# 演示程序
+  sk-app-1:
+    environment:
+      - APOLLO_META=http://apollo-quick-start:8080
+      - app.id=SampleApp
+      - ENV=DEV
+      # skywalking配置
+      - SW_AGENT_NAME=log-demo-1
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=sk-oap:11800
+    build:
+      context: ../
+      dockerfile: skywalking/Dockerfile
+      args:
+        jarName: apollo-demo
+    # 不指定宿主机映射端口是为了方便scale
+    ports:
+      - 8151:8150
+  sk-app-2:
+    environment:
+      - APOLLO_META=http://apollo-quick-start:8080
+      - app.id=SampleApp
+      - ENV=DEV
+      - SW_AGENT_NAME=log-demo-2
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=sk-oap:11800
+    build:
+      context: ../
+      dockerfile: skywalking/Dockerfile
+      args:
+        jarName: apollo-demo
+    # 不指定宿主机映射端口是为了方便scale
+    ports:
+      - 8152:8150
+
+networks:
+  default:
+    external:
+      # 主项目的网络
+      name: spring-cloud-explore-github_default

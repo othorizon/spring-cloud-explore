@@ -1,0 +1,48 @@
+version: '3.5'
+services:
+  sk-oap:
+    image: apache/skywalking-oap-server:8.5.0-es6
+    ports:
+      - 11800:11800
+      - 12800:12800
+    environment:
+      TZ: Asia/Shanghai
+  sk-ui:
+    image: apache/skywalking-ui
+    depends_on:
+      - sk-oap
+    ports:
+      - 18080:8080
+    environment:
+      TZ: Asia/Shanghai
+      SW_OAP_ADDRESS: sk-oap:12800
+
+# 演示程序
+  sk-app-1:
+    environment:
+      TZ: Asia/Shanghai
+      SW_AGENT_NAME: simple-demo-1
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: sk-oap:11800
+      SW_GRPC_LOG_SERVER_HOST: sk-oap
+      SW_GRPC_LOG_SERVER_PORT: 11800
+    build:
+      context: ../
+      dockerfile: skywalking/Dockerfile
+      args:
+        jarName: simple-demo
+    ports:
+      - 8161:8160
+  sk-app-2:
+    environment:
+      TZ: Asia/Shanghai
+      SW_AGENT_NAME: simple-demo-2
+      SW_AGENT_COLLECTOR_BACKEND_SERVICES: sk-oap:11800
+      SW_GRPC_LOG_SERVER_HOST: sk-oap
+      SW_GRPC_LOG_SERVER_PORT: 11800
+    build:
+      context: ../
+      dockerfile: skywalking/Dockerfile
+      args:
+        jarName: simple-demo
+    ports:
+      - 8162:8160

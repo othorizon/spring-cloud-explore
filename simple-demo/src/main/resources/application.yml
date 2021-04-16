@@ -1,0 +1,10 @@
+server:
+  port: 8160
+spring:
+  application:
+    name: Simple-Demo
+
+logging:
+  file: simple-demo.log
+  level: debug
+  config: classpath:log4j2.xml
