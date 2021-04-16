@@ -5,7 +5,7 @@
             <PatternLayout pattern="%d [%traceId] %-5p %c{1}:%L - %m%n"/>
         </Console>
         <GRPCLogClientAppender name="grpc-log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d [%traceId] %-5p %c{1}:%L - %m%n"/>
         </GRPCLogClientAppender>
     </Appenders>
     <Loggers>

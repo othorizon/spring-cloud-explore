@@ -20,3 +20,7 @@ https://skywalking.apache.org/docs/main/v8.5.0/en/setup/service-agent/java-agent
 
 `docker-compose up -d sk-ui`
 `docker-compose up -d --build sk-app-1 sk-app-2`
+
+ui http://localhost:18080/
+
+请求测试 http://localhost:8161/restTemplateRequest?url=http://sk-app-2:8160
