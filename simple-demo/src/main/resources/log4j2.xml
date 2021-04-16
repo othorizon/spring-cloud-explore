@@ -4,9 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d [%traceId] %-5p %c{1}:%L - %m%n"/>
         </Console>
-        <GRPCLogClientAppender name="grpc-log">
-            <PatternLayout pattern="%d [%traceId] %-5p %c{1}:%L - %m%n"/>
-        </GRPCLogClientAppender>
+        <GRPCLogClientAppender name="grpc-log"/>
     </Appenders>
     <Loggers>
         <Root level="INFO">

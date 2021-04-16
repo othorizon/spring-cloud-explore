@@ -18,6 +18,11 @@ https://skywalking.apache.org/docs/main/v8.5.0/en/setup/service-agent/java-agent
 
 ## demo
 
+```bash
+mvn clean package -pl simple-demo
+docker-compose -f docker-compose.yml up -d --build
+```
+
 `docker-compose up -d sk-ui`
 `docker-compose up -d --build sk-app-1 sk-app-2`
 

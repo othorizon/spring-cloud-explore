@@ -20,6 +20,11 @@ https://blog.csdn.net/hu_zhiting/article/details/89707448
 
 ## docker 部署
 
+```bash
+mvn clean package
+docker-compose -f docker-compose.yml up -d --build
+```
+
 `docker-compose -f docker-compose.yml up -d --build --scale demo-order=2`
 `docker-compose -f docker-compose.yml up -d --build [serviceName]`
 
